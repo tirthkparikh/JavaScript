@@ -15,6 +15,10 @@
 // null
 // undefined
 
+//IMP NOTE WE CAN DIFFRENTIATE BETWEEN NULL AND UNDEFINED BY TYPEOF()
+// TYPE OF OF UNDEFINED IS UNDEFINED
+// TYPE OF NULL IS OBJECT
+
 //Advanced primtive data types
 
 //bigInt =>BigInt values represent numeric values which are too large to be represented by the number primitive.
@@ -61,7 +65,9 @@ const name = "tirth";
 const empty = null;
 const empty2 = undefined;
 typeof (empty, empty2);
-console.log(empty, empty2);
+console.log(empty2, empty);
+console.log(typeof empty);
+console.log(typeof empty2);
 
 //advanced primtive data types
 
@@ -88,14 +94,15 @@ let e = Symbol(5);
 console.log(c, e);
 console.log("c == e", c == e);
 
-//Bigint => adds n at last rember 1n=1
+//Bigint => adds n at last
+// remember 1n = 1
 // BigInt values are similar to Number values in some ways,
 // but also differ in a few key matters: A BigInt value cannot be used with methods in the built -in Math object
 // and cannot be mixed with a Number value in operations;
 // they must be coerced to the same type.
 // Be careful coercing values back and forth,
 // however, as the precision of a BigInt value may be lost when it is coerced to a Number value.
-//Only use a BigInt value when values greater than 253 are reasonably expected.
+//Only use a BigInt value when values greater than 2**53 are reasonably expected.
 
 let value = BigInt(1000);
 console.log(value);
@@ -103,3 +110,7 @@ let value2 = 3n;
 console.log(value * value2);
 console.log(Number(value * value2));
 console.log(Number(value * value2) == value * value2);
+
+console.log(true + true); //1+1
+console.log(true + false); //1+0
+console.log(false + false); //0+0
