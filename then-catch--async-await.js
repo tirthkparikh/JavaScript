@@ -1,3 +1,5 @@
+// MIMP -async fun and .then always returns promiseß
+
 //below is playground to understand promise chaining and then and catch blocks
 
 //one can use .then() as many as they want,
@@ -53,3 +55,44 @@ const data = dataPromise
   .catch((err) => console.log(err))
   .then((err) => console.log(err, "err"))
   .catch((err) => console.log(err));
+
+//   async-await is used then and catch is not used
+//await can be used tin async fn
+//await stops execution of that fn until promissed is resolved
+// note: - but there is possible that line of code outside async fn will be excuted when async fn is waiting for promise to be resolved
+const request = async () => {
+  try {
+    const response = await dataPromise;
+    const result = await response.json();
+    console.log("result from async fn", result);
+  } catch (err) {
+    console.error(err, "err");
+  }
+};
+request();
+
+//pausing
+const makeTimeout = (ms) => {
+  const timeout = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("All done!");
+    }, ms);
+  });
+
+  return timeout;
+};
+
+console.log("Program starting..."); // 1
+
+const fetchData = async () => {
+  console.log("Fetching first set of data..."); // 2
+  const result1 = makeTimeout(2000);
+  console.log("Fetching second set of data...", result1); // 4
+  const result2 = makeTimeout(2000);
+  const finalResult = await Promise.all([result1, result2]);
+  console.log("Done fetching data!", finalResult); // 5
+};
+
+fetchData();
+
+console.log("Program complete..."); // 3
